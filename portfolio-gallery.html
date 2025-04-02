@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webdesign Portfolio | Beispiele</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .portfolio-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #2b6cb0, #1a365d);
+            color: white;
+        }
+
+        .portfolio-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .gallery {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.05);
+        }
+
+        .gallery-content {
+            padding: 1.5rem;
+        }
+
+        .gallery-content h3 {
+            color: #2b6cb0;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-content p {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #e5e7eb;
+            color: #4b5563;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            margin: 0.5rem 0.5rem 0 0;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #2b6cb0;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #1a365d;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                padding: 1rem;
+            }
+            
+            .portfolio-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="portfolio-header">
+        <h1>Unsere Webdesign Beispiele</h1>
+        <p>Entdecken Sie unsere modernen und benutzerfreundlichen Designs</p>
+    </header>
+
+    <div class="gallery">
+        <!-- Beispiel 1 -->
+        <div class="gallery-item">
+            <div class="gallery-image">
+                <img src="images/Website_with_High-Tech.jpg" alt="High-Tech Landing Page">
+            </div>
+            <div class="gallery-content">
+                <h3>High-Tech Landing Page</h3>
+                <p>Moderne One-Page Website mit 3D-Elementen und dynamischen Übergängen.</p>
+                <span class="tag">One-Page</span>
+                <span class="tag">Modern</span>
+                <span class="tag">3D-Design</span>
+            </div>
+        </div>
+
+        <!-- Beispiel 2 -->
+        <div class="gallery-item">
+            <div class="gallery-image">
+                <img src="images/mywebsitephone.jpeg" alt="Mobile-First Design">
+            </div>
+            <div class="gallery-content">
+                <h3>Mobile-First Design</h3>
+                <p>Responsive Website mit Fokus auf mobile Benutzerfreundlichkeit.</p>
+                <span class="tag">Responsive</span>
+                <span class="tag">Mobile-First</span>
+                <span class="tag">Clean</span>
+            </div>
+        </div>
+
+        <!-- Beispiel 3 -->
+        <div class="gallery-item">
+            <div class="gallery-image">
+                <img src="images/Webseite_maß.jpeg" alt="Maßgeschneiderte Business Website">
+            </div>
+            <div class="gallery-content">
+                <h3>Business Solution</h3>
+                <p>Professionelle Website für Unternehmen mit klarem Fokus auf Conversion.</p>
+                <span class="tag">Business</span>
+                <span class="tag">Professional</span>
+                <span class="tag">Conversion</span>
+            </div>
+        </div>
+    </div>
+
+    <a href="infoboxes.html" class="back-button">Zurück zur Übersicht</a>
+</body>
+</html> 

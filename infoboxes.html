@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info-Boxen mit Tooltips</title>
+    <style>
+        /* Reset und Basis-Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+            min-height: 100vh;
+            display: block;
+            padding-top: 100px;
+        }
+
+        /* Header Styling */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+        }
+
+        /* Container für Info-Boxen */
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Info-Box Styling */
+        .info-box {
+            background: white;
+            padding: 0;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-box-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* Box-spezifische Anpassungen */
+        .info-box:nth-child(1) .info-box-image {
+            background: #f8fafc;
+            padding: 1rem;
+        }
+
+        .info-box:nth-child(1) .info-box-image img {
+            object-fit: contain;
+        }
+
+        .info-box:nth-child(2) .info-box-image {
+            background: #f0f9ff;
+            padding: 2rem;
+        }
+
+        .info-box:nth-child(2) .info-box-image img {
+            object-fit: contain;
+        }
+
+        .info-box:nth-child(3) .info-box-image {
+            background: #f0fdf4;
+            padding: 1.5rem;
+        }
+
+        .info-box:nth-child(3) .info-box-image img {
+            object-fit: contain;
+        }
+
+        .info-box-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-box-features {
+            list-style: none;
+            margin-top: 1rem;
+            color: #4b5563;
+        }
+
+        .info-box-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-box-features li:before {
+            content: "✓";
+            color: #2b6cb0;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .info-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2b6cb0;
+        }
+
+        .info-box p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+
+        /* Tooltip Styling */
+        .tooltip {
+            position: absolute;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: #1a365d;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            width: 300px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0 8px 8px 8px;
+            border-style: solid;
+            border-color: transparent transparent #1a365d transparent;
+        }
+
+        /* Tooltip Trigger */
+        .info-box:hover .tooltip,
+        .info-box:focus .tooltip,
+        .info-box.active .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Icon für "Mehr Info" */
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: #e5e7eb;
+            border-radius: 50%;
+            font-size: 14px;
+            color: #4b5563;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-box:hover .info-icon {
+            background: #2b6cb0;
+            color: white;
+        }
+
+        /* Responsive Anpassungen */
+        @media (min-width: 1024px) {
+            .info-boxes {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .info-box {
+                max-width: 100%;
+            }
+
+            .info-box-image {
+                height: 160px;
+            }
+        }
+
+        /* Zusätzliche Animationen */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .info-box:active {
+            animation: pulse 0.3s ease;
+        }
+
+        /* Portfolio Button Styling */
+        .portfolio-button {
+            background: #2b6cb0;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-button:hover {
+            background: #1a365d;
+            transform: translateY(-2px);
+        }
+
+        .portfolio-button svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header mit Portfolio Button -->
+    <header class="header">
+        <a href="portfolio-gallery.html" class="portfolio-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M4 6h16v12H4V6m0 1v10h16V7H4z M6 9h12v2H6V9z"/>
+            </svg>
+            Portfolio anzeigen
+        </a>
+    </header>
+
+    <div class="info-boxes">
+        <!-- Box 1: One-Page-Webseiten -->
+        <div class="info-box" tabindex="0">
+            <div class="info-box-image">
+                <img src="images/Website_with_High-Tech.jpg" alt="One-Page-Webseiten Beispiel">
+            </div>
+            <div class="info-box-content">
+                <h3>📱 One-Page-Webseiten</h3>
+                <p>Alles auf einen Blick – Modern. Schnell. Individuell.</p>
+                <ul class="info-box-features">
+                    <li>mobilfreundlich</li>
+                    <li>übersichtlich & klar strukturiert</li>
+                    <li>perfekt für jede Branche</li>
+                </ul>
+                <span class="info-icon">i</span>
+                <div class="tooltip">
+                    Wir erstellen professionelle One-Pager, die genau das zeigen, worauf es ankommt – und zwar übersichtlich, mobiloptimiert und blitzschnell. Ihre Website wird von Grund auf strategisch geplant und optimal auf Ihre Zielgruppe ausgerichtet.
+                </div>
+            </div>
+        </div>
+
+        <!-- Box 2: Logo-Erstellung -->
+        <div class="info-box" tabindex="0">
+            <div class="info-box-image">
+                <img src="images/Tramific_Collection.jpg" alt="Logo-Design Beispiele">
+            </div>
+            <div class="info-box-content">
+                <h3>Logo-Erstellung</h3>
+                <p>Einzigartige Logos, die in Erinnerung bleiben.</p>
+                <ul class="info-box-features">
+                    <li>professionelles Design</li>
+                    <li>zeitlos & modern</li>
+                    <li>alle Dateiformate</li>
+                </ul>
+                <span class="info-icon">i</span>
+                <div class="tooltip">
+                    Ihre Website wird von Grund auf strategisch geplant. Wir entwickeln eine klare, benutzerfreundliche Struktur, die Ihre Besucher intuitiv durch Ihre Inhalte führt und Ihre Geschäftsziele optimal unterstützt.
+                </div>
+            </div>
+        </div>
+
+        <!-- Box 3: SEO-Optimierung -->
+        <div class="info-box" tabindex="0">
+            <div class="info-box-image">
+                <img src="images/Computer_Service_SEO.jpg" alt="SEO-Optimierung Visualisierung">
+            </div>
+            <div class="info-box-content">
+                <h3>SEO-Optimierung</h3>
+                <p>Damit Sie gefunden werden – professionell und effektiv.</p>
+                <ul class="info-box-features">
+                    <li>Google-optimiert</li>
+                    <li>mehr Sichtbarkeit</li>
+                    <li>messbare Ergebnisse</li>
+                </ul>
+                <span class="info-icon">i</span>
+                <div class="tooltip">
+                    Mit unserer professionellen SEO-Strategie sorgen wir dafür, dass Ihre Website in den Suchergebnissen ganz oben erscheint. Wir optimieren Ihre Inhalte, Struktur und technischen Aspekte für maximale Sichtbarkeit bei Google.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Touch Support
+        document.querySelectorAll('.info-box').forEach(box => {
+            let isTooltipVisible = false;
+
+            // Touch Events
+            box.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const wasActive = box.classList.contains('active');
+                
+                // Remove active class from all boxes
+                document.querySelectorAll('.info-box').forEach(otherBox => {
+                    otherBox.classList.remove('active');
+                });
+
+                // Toggle active class on clicked box
+                if (!wasActive) {
+                    box.classList.add('active');
+                    isTooltipVisible = true;
+                } else {
+                    isTooltipVisible = false;
+                }
+            });
+
+            // Click outside to close
+            document.addEventListener('click', (e) => {
+                if (!box.contains(e.target)) {
+                    box.classList.remove('active');
+                    isTooltipVisible = false;
+                }
+            });
+
+            // Keyboard accessibility
+            box.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    box.classList.toggle('active');
+                    isTooltipVisible = !isTooltipVisible;
+                }
+                if (e.key === 'Escape' && isTooltipVisible) {
+                    box.classList.remove('active');
+                    isTooltipVisible = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="description" content="WhatsWeb - Professionelle Webseiten-Erstellung für Unternehmen aller Branchen. Individuelle, responsive und SEO-optimierte Websites für Ihren Erfolg im digitalen Zeitalter.">
+    <title>WhatsWeb | Professionelle Websites für Unternehmen</title>
+    <link rel="icon" type="image/png" href="images/whatsweb-logo.png">
+    <style>
+        /* Reset und Basis-Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 7rem; /* Erhöhter Abstand für Info-Leiste und Navigation */
+        }
+
+        /* Container und Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Info-Bar Styling */
+        .info-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            color: #333;
+            padding: 0.75rem 0;
+            font-size: 0.9rem;
+            z-index: 1001; /* Höherer Z-Index als die Navigation */
+            border-bottom: 1px solid #e5e7eb;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .info-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2.5rem;
+        }
+
+        .info-bar a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+            transition: color 0.3s ease;
+        }
+
+        .info-bar a:hover {
+            color: #2b6cb0;
+        }
+
+        .info-bar svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 8rem; /* Mehr Platz auf mobilen Geräten */
+            }
+
+            .info-bar-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+
+            .info-bar {
+                padding: 0.5rem 0;
+            }
+
+            .hero {
+                padding-top: 2rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(43, 108, 176, 0.95), rgba(66, 153, 225, 0.95));
+            color: white;
+            padding: 6rem 0;
+            overflow: hidden;
+            margin-top: 0; /* Entfernen des zusätzlichen Margins */
+            padding-top: 4rem; /* Mehr Padding oben für besseren Abstand zur Info-Leiste */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/Struktur.jpeg') center/cover no-repeat;
+            opacity: 0.25;
+            z-index: 1;
+            filter: contrast(110%) brightness(90%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Feature Sections */
+        .feature {
+            padding: 6rem 0;
+            background: var(--light-bg);
+        }
+
+        .feature-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .feature-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 2rem 0;
+        }
+
+        .feature-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transform: scale(1);
+            transition: transform 0.5s ease;
+        }
+
+        .feature-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .feature:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-image {
+            flex: 1;
+        }
+
+        .feature h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature p {
+            font-size: 1.1rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background-color: #2b6cb0;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #2c5282;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(79, 70, 229, 0.3);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Trust Elements */
+        .trust-elements {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-top: 3rem;
+        }
+
+        .rating {
+            padding: 1rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .rating:hover {
+            transform: translateY(-5px);
+        }
+
+        .rating .stars {
+            color: #fbbf24;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;  /* Reduzierter Abstand auf Mobilgeräten */
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .container {
+                padding: 0 16px;  /* Angepasster Seitenabstand */
+            }
+
+            .feature-content {
+                text-align: center;  /* Zentrierter Text auf Mobilgeräten */
+            }
+
+            .feature-image {
+                margin: 1rem 0;
+            }
+
+            .feature-image svg {
+                width: 100%;  /* Volle Breite für Screenshots */
+                height: auto;
+                max-width: 300px;  /* Maximale Breite begrenzen */
+            }
+
+            .trust-elements {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .rating {
+                margin-bottom: 1.5rem;  /* Abstand zwischen Bewertungen */
+            }
+
+            .rating:last-child {
+                margin-bottom: 0;
+            }
+
+            /* Verbesserte Button-Darstellung */
+            .btn {
+                width: 100%;  /* Volle Breite auf Mobilgeräten */
+                text-align: center;
+                padding: 1rem 2rem;
+            }
+
+            /* Optimierte Abstände für bessere Lesbarkeit */
+            .hero p {
+                margin-bottom: 1.5rem;
+            }
+
+            .feature p {
+                margin-bottom: 1rem;
+            }
+
+            .feature-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1rem;
+            }
+
+            .service-card img {
+                height: 200px;
+            }
+        }
+
+        /* Zusätzliche Optimierung für sehr kleine Bildschirme */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .feature h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Zusätzliche Styles für Branchen-Icons */
+        .industry-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .industry-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* Neue Styles für Dienstleistungs-Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-description {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: #4b5563;
+        }
+
+        .service-feature::before {
+            content: "✓";
+            color: #2b6cb0;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Neue Styles für Bilder */
+        .feature-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-image img:hover {
+            transform: scale(1.02);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-image {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        /* Optimierte Bildcontainer */
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .image-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+            pointer-events: none;
+        }
+
+        /* Optimierte Hero-Content */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-primary {
+            background-color: #2b6cb0;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: #2b6cb0;
+        }
+
+        @media (max-width: 768px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Spezielle Styles für das Mockup-Bild */
+        .feature:first-of-type .feature-image {
+            padding: 20px;
+            background: #f0f9ff;
+            border-radius: 20px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            margin: 2rem 0;
+        }
+
+        .feature:first-of-type .feature-image:hover {
+            transform: perspective(1000px) rotateY(-10deg) translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .feature:first-of-type .feature-image img {
+            border-radius: 12px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transition: all 0.5s ease;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .feature:first-of-type .feature-image:hover img {
+            transform: scale(1.02) translateZ(20px);
+        }
+
+        @media (max-width: 768px) {
+            .feature:first-of-type .feature-image {
+                transform: none;
+                padding: 15px;
+            }
+
+            .feature:first-of-type .feature-image:hover {
+                transform: translateY(-10px);
+            }
+
+            .feature:first-of-type .feature-image img {
+                transform: none;
+            }
+        }
+
+        /* Spezielle Styles für das Responsive Design Bild */
+        .feature:nth-child(4) .feature-image {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:nth-child(4) .feature-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature:nth-child(4) .feature-image img {
+            border-radius: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .feature:nth-child(4) .feature-image {
+                margin: 2rem auto;
+                max-width: 90%;
+            }
+        }
+
+        /* Kontaktformular Styling - Moderneres Design */
+        .contact-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(66, 153, 225, 0.3), transparent);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .contact-image {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.6s ease;
+            position: relative;
+        }
+
+        .contact-image:hover {
+            transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transform: scale(1.02);
+            transition: transform 0.6s ease;
+        }
+
+        .contact-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .contact-form-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .contact-intro h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #1a365d;
+            line-height: 1.2;
+        }
+
+        .contact-intro p {
+            font-size: 1.25rem;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2b6cb0;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2b6cb0 0%, #2c5282 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(43, 108, 176, 0.5);
+        }
+
+        .contact-form button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+        }
+
+        .contact-form button:hover::after {
+            transform: translateX(100%);
+            transition: transform 0.6s ease;
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 4rem 0;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-image {
+                transform: none;
+                margin: 0 auto;
+                max-width: 90%;
+            }
+
+            .contact-form-container {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-intro h2 {
+                font-size: 2.25rem;
+            }
+
+            .contact-intro p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Zusätzliche Animationen */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-intro, .contact-grid {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .form-group {
+            opacity: 0;
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.2s; }
+        .form-group:nth-child(2) { animation-delay: 0.3s; }
+        .form-group:nth-child(3) { animation-delay: 0.4s; }
+        .form-group:nth-child(4) { animation-delay: 0.5s; }
+        .form-group:nth-child(5) { animation-delay: 0.6s; }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/klempner-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .service-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 2% auto;
+                padding: 1rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .modal-title {
+                font-size: 2rem;
+            }
+
+            .service-item {
+                padding: 1rem;
+            }
+        }
+
+        /* Navigation Styles */
+        header {
+            position: fixed;
+            top: 3rem; /* Abstand unter der Info-Leiste */
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #1f2937;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #f3f4f6;
+            color: #2b6cb0;
+        }
+
+        .services-button {
+            background: #2b6cb0;
+            color: white !important;
+        }
+
+        .services-button:hover {
+            background: #2c5282;
+            color: white !important;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Neue Logo-Styles */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .nav-logo {
+                font-size: 1rem;
+                gap: 0.75rem;
+            }
+
+            .nav-logo img {
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Info-Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <a href="tel:12345">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1zM5.1 5h1.7c.1.9.3 1.8.5 2.6L5.8 9.1c-.4-1.3-.7-2.7-.7-4.1zM19 18.9c-1.4 0-2.8-.3-4.1-.7l1.5-1.5c.8.2 1.7.4 2.6.5v1.7z"/>
+                </svg>
+                Telefon: 12345
+            </a>
+            <a href="mailto:bsp@mail.de">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                E-Mail: bsp@mail.de
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="nav-logo">
+                <img src="images/whatsweb-logo.png" alt="WhatsWeb Logo">
+                WhatsWeb
+            </a>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#" class="services-button">Unsere Leistungen</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ihre digitale Präsenz - Ihr Erfolg im digitalen Zeitalter</h1>
+                <p>Eine professionelle Webseite ist heute der Schlüssel zum Geschäftserfolg. Wir erstellen maßgeschneiderte, responsive Websites, die Ihre Zielgruppe begeistern und Ihre Conversion-Rate steigern.</p>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">SEO-optimiert, benutzerfreundlich und auf allen Geräten perfekt dargestellt.</p>
+                <div class="hero-buttons">
+                    <a href="#kontakt" class="btn btn-primary">Kostenloses Erstgespräch</a>
+                    <a href="#services" class="btn btn-secondary">Unsere Leistungen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section 1: Maßgeschneiderte Websites -->
+    <section class="feature" style="background: white;">
+        <div class="container feature-container">
+            <div class="feature-content">
+                <h2>Maßgeschneiderte Websites</h2>
+                <p>Wir erstellen Ihre individuelle Website, die perfekt zu Ihrem Unternehmen passt. Modern, clean und benutzerfreundlich - genau wie Sie es sich vorstellen. Mit unserem durchdachten Design-Prozess entwickeln wir eine Website, die Ihre Marke optimal repräsentiert.</p>
+                <a href="#kontakt" class="btn btn-primary">Website anfragen</a>
+            </div>
+            <div class="feature-image" style="background: #f0f9ff; padding: 20px; border-radius: 20px;">
+                <img src="images/Webseite_maß.jpeg" alt="Maßgeschneiderte Website Mockup" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); transform: perspective(1000px) rotateY(-5deg); transition: all 0.5s ease;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section 2: Webseitenstruktur -->
+    <section class="feature">
+        <div class="container feature-container">
+            <div class="feature-image">
+                <img src="images/Struktur.jpeg" alt="Professionelle Webseitenstruktur" loading="lazy">
+            </div>
+            <div class="feature-content">
+                <h2>Durchdachte Struktur</h2>
+                <p>Ihre Website wird von Grund auf strategisch geplant. Wir entwickeln eine klare, benutzerfreundliche Struktur, die Ihre Besucher intuitiv durch Ihre Inhalte führt und Ihre Geschäftsziele optimal unterstützt.</p>
+                <a href="#kontakt" class="btn btn-primary">Mehr erfahren</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section 3: SEO-Optimierung -->
+    <section class="feature" style="background: white;">
+        <div class="container feature-container">
+            <div class="feature-image">
+                <img src="images/Seo_image.jpeg" alt="SEO-Optimierung" loading="lazy" style="box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);">
+            </div>
+            <div class="feature-content">
+                <h2>SEO-Optimierung</h2>
+                <p>Mit unserer professionellen SEO-Strategie sorgen wir dafür, dass Ihre Website in den Suchergebnissen ganz oben erscheint. Wir optimieren Ihre Inhalte, Struktur und technischen Aspekte für maximale Sichtbarkeit bei Google.</p>
+                <a href="#kontakt" class="btn btn-primary">SEO-Beratung anfragen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section 4: Responsive Design -->
+    <section class="feature">
+        <div class="container feature-container">
+            <div class="feature-content">
+                <h2>Responsive Design für alle Geräte</h2>
+                <p>Heute surfen mehr Menschen mit dem Smartphone als mit dem Desktop. Unsere Websites sind daher von Grund auf responsiv gestaltet und bieten auf allen Geräten die optimale Nutzererfahrung.</p>
+                <p style="margin-top: 1rem;">Schnelle Ladezeiten, intuitive Navigation und moderne Technologien garantieren eine zukunftssichere digitale Präsenz.</p>
+                <a href="#kontakt" class="btn btn-primary">Mehr erfahren</a>
+            </div>
+            <div class="feature-image" style="background: #f8fafc; padding: 20px; border-radius: 20px;">
+                <img src="images/mywebsitephone.jpeg" alt="Responsive Design Darstellung" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 25px 50px rgba(0,0,0,0.15);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Branchen Section -->
+    <section class="industries">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Webseiten für alle Branchen</h2>
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <h3>Handel & E-Commerce</h3>
+                    <p>Online-Shops und Verkaufsplattformen, die Ihre Produkte perfekt präsentieren.</p>
+                </div>
+                <div class="industry-card">
+                    <h3>Dienstleistungen</h3>
+                    <p>Professionelle Dienstleister-Websites, die Vertrauen aufbauen und Kunden gewinnen.</p>
+                </div>
+                <div class="industry-card">
+                    <h3>Handwerk</h3>
+                    <p>Handwerker-Websites, die Ihre Expertise und Qualität überzeugend darstellen.</p>
+                </div>
+                <div class="industry-card">
+                    <h3>Gesundheit & Wellness</h3>
+                    <p>Websites für Ärzte, Therapeuten und Wellness-Anbieter mit Fokus auf Vertrauen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neue Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Unsere Dienstleistungen</h2>
+            <div class="services-grid">
+                <!-- One-Page-Webseiten -->
+                <div class="service-card">
+                    <img src="images/screenshots/one-page.jpg" alt="One-Page-Webseiten" loading="lazy">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">One-Page-Webseiten – Alles auf einen Blick</h3>
+                    <p class="service-description">Modern. Schnell. Individuell. Wir erstellen professionelle One-Pager, die genau das zeigen, worauf es ankommt – und zwar übersichtlich, mobiloptimiert und blitzschnell.</p>
+                    <ul class="service-features">
+                        <li class="service-feature">mobilfreundlich</li>
+                        <li class="service-feature">übersichtlich & klar strukturiert</li>
+                        <li class="service-feature">perfekt für jede Branche</li>
+                    </ul>
+                </div>
+
+                <!-- Logo-Erstellung -->
+                <div class="service-card">
+                    <img src="images/logos/logo-design.jpg" alt="Logo-Erstellung" loading="lazy">
+                    <div class="service-icon">🖌️</div>
+                    <h3 class="service-title">Logo-Erstellung – Ihre Marke, Ihr Stil</h3>
+                    <p class="service-description">Individuelle Logos, passend zu Ihrer Marke – einzigartig und professionell.</p>
+                    <ul class="service-features">
+                        <li class="service-feature">im Paket enthalten</li>
+                        <li class="service-feature">100% individuell</li>
+                        <li class="service-feature">inklusive aller Formate</li>
+                    </ul>
+                </div>
+
+                <!-- SEO-Optimierung -->
+                <div class="service-card">
+                    <img src="images/screenshots/seo-services.jpg" alt="SEO-Optimierung" loading="lazy">
+                    <div class="service-icon">🚀</div>
+                    <h3 class="service-title">SEO-Optimierung – Damit Sie gefunden werden</h3>
+                    <p class="service-description">Ganz oben bei Google – statt irgendwo. Was bringt die schönste Webseite, wenn sie niemand sieht?</p>
+                    <ul class="service-features">
+                        <li class="service-feature">OnPage-SEO inklusive Struktur & Keywords</li>
+                        <li class="service-feature">Google-freundlicher Code</li>
+                        <li class="service-feature">optional: Texte und Local SEO</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section mit Kontaktformular -->
+    <section class="contact-section" id="kontakt">
+        <div class="container">
+            <div class="contact-intro">
+                <h2>Bereit für Ihre neue Webseite?</h2>
+                <p>Lassen Sie uns gemeinsam Ihre digitale Präsenz gestalten. Vereinbaren Sie ein kostenloses Erstgespräch und erfahren Sie, wie wir Ihr Unternehmen online voranbringen können.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-image">
+                    <img src="images/telefonass.jpeg" alt="Professionelles Beratungsgespräch" loading="lazy">
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm" action="mailto:emre.uzunmod@gmail.com" method="POST" enctype="text/plain">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstname">Vorname</label>
+                                <input type="text" id="firstname" name="firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Nachname</label>
+                                <input type="text" id="lastname" name="lastname" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Telefonnummer</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-Mail-Adresse</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Ihre Nachricht</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Kostenloses Erstgespräch vereinbaren</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="trust-elements">
+                <div class="rating">
+                    <div class="stars">★★★★★</div>
+                    <p>4.9/5 Kundenbewertung</p>
+                    <p style="font-size: 0.9rem; color: #6B7280;">"Hervorragende Zusammenarbeit und erstklassiges Ergebnis!"</p>
+                </div>
+                <div class="rating">
+                    <p style="font-size: 1.2rem; font-weight: 600;">Über 200+ Projekte</p>
+                    <p style="font-size: 0.9rem; color: #6B7280;">erfolgreich umgesetzt</p>
+                </div>
+                <div class="rating">
+                    <p style="font-size: 1.2rem; font-weight: 600;">100% Responsive</p>
+                    <p style="font-size: 0.9rem; color: #6B7280;">auf allen Geräten</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal für Leistungen -->
+    <div class="modal" id="servicesModal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Schließen">&times;</button>
+            <h2 class="modal-title">Unsere Leistungen</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>One-Page-Webseiten</h3>
+                    <p>Klare, mobilfreundliche und individuell gestaltete Webseiten für Selbstständige, Unternehmen und Vereine.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Logo-Erstellung</h3>
+                    <p>Individuelle Logos, passend zu Ihrer Marke – einzigartig und professionell.</p>
+                </div>
+                <div class="service-item">
+                    <h3>SEO-Optimierung</h3>
+                    <p>Wir sorgen dafür, dass Ihre Webseite bei Google gefunden wird – technisch sauber und inhaltlich stark.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Texterstellung</h3>
+                    <p>Professionelle Texte, die informieren und überzeugen – ideal für Ihre Zielgruppe.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Komplett-Service</h3>
+                    <p>Sie sagen, wie's aussehen soll – wir übernehmen alles: Design, Inhalte, Struktur und technische Umsetzung.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Alle DOM-Elemente
+        const contactForm = document.getElementById('contactForm');
+        const servicesModal = document.getElementById('servicesModal');
+        const modalClose = document.querySelector('.modal-close');
+        const servicesButtons = document.querySelectorAll('.services-button');
+
+        // Formular-Handling
+        contactForm.addEventListener('submit', (e) => {
+            alert('Vielen Dank für Ihre Nachricht! Sie werden weitergeleitet zu Ihrem E-Mail-Programm.');
+        });
+
+        // Modal Funktionalität
+        function openModal() {
+            servicesModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            servicesModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Modal Event Listener
+        servicesButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        servicesModal.addEventListener('click', (e) => {
+            if (e.target === servicesModal) closeModal();
+        });
+
+        // ESC-Taste zum Schließen
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && servicesModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Smooth Scroll Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                // Modal öffnen wenn es der Leistungen-Button ist
+                if (this.classList.contains('services-button')) {
+                    openModal();
+                    return;
+                }
+                
+                // Ansonsten zum Ziel scrollen
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

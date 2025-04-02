@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .info-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            color: #333;
+            padding: 0.75rem 0;
+            font-size: 0.9rem;
+            z-index: 1000;
+            border-bottom: 1px solid #e5e7eb;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .info-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2.5rem;
+        }
+
+        .info-bar a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+        }
+
+        .info-bar a:hover {
+            color: #2b6cb0;
+        }
+
+        .info-bar svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .info-bar-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+
+            .info-bar {
+                padding: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <a href="tel:12345">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 15.5c-1.2 0-2.4-.2-3.6-.6-.3-.1-.7 0-1 .2l-2.2 2.2c-2.8-1.4-5.1-3.8-6.6-6.6l2.2-2.2c.3-.3.4-.7.2-1-.3-1.1-.5-2.3-.5-3.5 0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1 0 9.4 7.6 17 17 17 .6 0 1-.4 1-1v-3.5c0-.6-.4-1-1-1zM5.1 5h1.7c.1.9.3 1.8.5 2.6L5.8 9.1c-.4-1.3-.7-2.7-.7-4.1zM19 18.9c-1.4 0-2.8-.3-4.1-.7l1.5-1.5c.8.2 1.7.4 2.6.5v1.7z"/>
+                </svg>
+                Telefon: 12345
+            </a>
+            <a href="mailto:bsp@mail.de">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                E-Mail: bsp@mail.de
+            </a>
+        </div>
+    </div>
+</body>
+</html> 
